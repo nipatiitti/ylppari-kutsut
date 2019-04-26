@@ -65,6 +65,11 @@ class AdminLogin extends React.Component {
             [name]: e.target.value
         })
 
+    handleScroll = e => {
+        let element = document.getElementById('login-right')
+        element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
+    }
+
     render = () => (
         <div className="login-container">
             <Helmet>
@@ -73,8 +78,19 @@ class AdminLogin extends React.Component {
             <div className="login-left">
                 <h1>Admin</h1>
                 <span>NYK admin kirjautuminen</span>
+                <div className="login-left-arrow" onClick={this.handleScroll}>
+                    <i className="material-icons arrows" id="first">
+                        keyboard_arrow_up
+                    </i>
+                    <i className="material-icons arrows" id="second">
+                        keyboard_arrow_up
+                    </i>
+                    <i className="material-icons arrows" id="third">
+                        keyboard_arrow_up
+                    </i>
+                </div>
             </div>
-            <div className="login-right">
+            <div className="login-right" id="login-right">
                 {this.state.loading ? (
                     <Loading />
                 ) : (

@@ -91,7 +91,7 @@ module.exports = require('./webpack.config.base')({
             },
             inject: true
         }),
-        new CopyPlugin([{ from: 'public/_redirect', to: './' }, ,]),
+        new CopyPlugin([{ from: 'public/_redirects', to: './' }, ,]),
         new MiniCssExtractPlugin({
             filename: '[name].[hash].css',
             chunkFilename: '[id].[hash].css'

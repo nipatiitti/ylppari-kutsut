@@ -57,6 +57,11 @@ class Login extends React.Component {
             [name]: e.target.value
         })
 
+    handleScroll = e => {
+        let element = document.getElementById('login-right')
+        element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
+    }
+
     render() {
         return (
             <div className="login-container">
@@ -66,8 +71,19 @@ class Login extends React.Component {
                 <div className="login-left">
                     <h1>Tervetuloa</h1>
                     <span>Niilon Ylioppilasjuhlien Kutsuportaali</span>
+                    <div className="login-left-arrow" onClick={this.handleScroll}>
+                        <i className="material-icons arrows" id="first">
+                            keyboard_arrow_up
+                        </i>
+                        <i className="material-icons arrows" id="second">
+                            keyboard_arrow_up
+                        </i>
+                        <i className="material-icons arrows" id="third">
+                            keyboard_arrow_up
+                        </i>
+                    </div>
                 </div>
-                <div className="login-right">
+                <div className="login-right" id="login-right">
                     {this.state.loading ? (
                         <Loading />
                     ) : (
