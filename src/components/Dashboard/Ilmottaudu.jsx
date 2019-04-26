@@ -21,8 +21,8 @@ const calendarConfig = {
         title: 'Ylioppilasjuhlat, Niilo',
         description: 'Niilo Jaakkolan Ylioppilas juhlat, 2019',
         location: 'Finland, Naantali, 21110, Kultaranta Golf',
-        startTime: '2019-06-01T11:00:00+03:00',
-        endTime: '2019-06-01T21:00:00+03:00'
+        startTime: '2019-06-01T14:00:00+03:00',
+        endTime: '2019-06-01T19:00:00+03:00'
     },
     displayItemIcons: false,
     buttonLabel: 'Lisää kalenteriin',
@@ -86,7 +86,7 @@ class Ilmottaudu extends Component {
                     </span>
                     <h2 className="h2">Milloin?</h2>
                     <span style={{ marginBottom: '4.5em', display: 'flex' }}>
-                        1.6.2019 12.00 - 21.00
+                        1.6.2019 14.00 - 19.00
                         <AddToCalendar {...calendarConfig} />
                     </span>
                     <div className="break" />
@@ -119,8 +119,8 @@ class Ilmottaudu extends Component {
                             <h2 id="mina">Perhe:</h2>
                             <span className="smalltext">
                                 (Voit tästä kirjata perheen jäseniäsi tulossa oleviksi, mutta jos
-                                heillä on allergioita/avec yms. pitää heidän [/sinun heidän
-                                nimellään] kirjautua sisälle ja merkitä se itse)
+                                heillä on allergioita/avec yms. pitää heidän (tai sinun heidän
+                                nimellään) kirjautua sisälle ja merkitä se itse)
                             </span>
                         </Fragment>
                     )}
