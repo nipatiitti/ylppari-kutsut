@@ -11,7 +11,7 @@ class Input extends Component {
 
     handleChange = state => () => {
         const { value } = this.props
-        const focus = value == '' ? state : true
+        const focus = value === '' ? state : true
 
         this.setState({
             focus
@@ -22,12 +22,14 @@ class Input extends Component {
         <div className="input-container">
             <label
                 className={`input-label input-label-${
-                    this.state.focus || this.props.value != '' ? 'focus' : 'default'
+                    this.state.focus || this.props.value !== '' ? 'focus' : 'default'
                 }`}
             >
                 {`${this.props.label}${this.state.focus ? ':' : '...'}`}
             </label>
             <input
+                ref={r => (this.props.setRef ? this.props.setRef(r) : () => {})}
+                type={this.props.type ? this.props.type : 'text'}
                 className="input-input"
                 value={this.props.value}
                 onChange={this.props.onChange}

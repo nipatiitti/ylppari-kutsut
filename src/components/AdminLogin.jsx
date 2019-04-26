@@ -10,7 +10,9 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 
-import { adminLogin, register } from 'actions'
+import { Link } from 'react-router-dom'
+
+import { adminLogin } from 'actions'
 
 import { Button, Loading, Input } from './Utils'
 
@@ -69,7 +71,7 @@ class AdminLogin extends React.Component {
                 <title>Kirjaudu</title>
             </Helmet>
             <div className="login-left">
-                <h1>Tervetuloa</h1>
+                <h1>Admin</h1>
                 <span>NYK admin kirjautuminen</span>
             </div>
             <div className="login-right">
@@ -101,10 +103,13 @@ class AdminLogin extends React.Component {
                             <Input
                                 type="password"
                                 label="Salasana"
-                                value={this.state.salasana}
-                                onChange={this.handleChange('salasana')}
+                                value={this.state.password}
+                                onChange={this.handleChange('password')}
                             />
-                            <Button type="submit">Ilmottaudu</Button>
+                            <Button type="submit">Kirjaudu</Button>
+                            <div className="admin">
+                                <Link to="/kirjaudu">Käyttäjä puoli</Link>
+                            </div>
                         </form>
                     </Fragment>
                 )}

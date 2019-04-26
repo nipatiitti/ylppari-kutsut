@@ -21,7 +21,7 @@ class AdminCheck extends Component {
     }
 
     componentDidMount() {
-        if (!this.props.user) {
+        if (!this.props.user.loggedIn || !this.props.user.isAdmin) {
             this.setState({ isAuthenticated: false })
         }
     }

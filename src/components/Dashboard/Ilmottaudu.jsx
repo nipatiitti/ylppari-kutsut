@@ -10,11 +10,11 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 
-import { changeComing, followUserUpdates, logout } from 'actions'
+import { changeUser, followUserUpdates, logout } from 'actions'
 
 import AddToCalendar from '../AddToCalendar'
 
-import { Button, Checkbox } from '../Utils'
+import { Button, Checkbox, Input } from '../Utils'
 
 const calendarConfig = {
     event: {
@@ -32,6 +32,18 @@ const calendarConfig = {
 class Ilmottaudu extends Component {
     constructor(props) {
         super(props)
+
+        this.state = {
+            allergies: props.user.allergies
+        }
+    }
+
+    componentDidUpdate = () => {
+        if (this.props.user.allergies !== this.state.allergies) {
+            this.setState({
+                allergies: this.props.user.allergies
+            })
+        }
     }
 
     componentDidMount = () => {
@@ -40,8 +52,19 @@ class Ilmottaudu extends Component {
         }
     }
 
-    handleComingChange = id => isComing => {
-        this.props.dispatch(changeComing(id, isComing))
+    handleUserChange = (id, field) => e => {
+        if (e.target) {
+            changeUser(id, { [field]: e.target.value })
+        } else {
+            changeUser(id, { [field]: e })
+        }
+    }
+
+    handleAllergiesChange = e => {
+        this.setState({
+            allergies: e.target.value
+        })
+        changeUser(this.props.user.id, { allergies: e.target.value })
     }
 
     render = () => (
@@ -74,16 +97,42 @@ class Ilmottaudu extends Component {
                         Olen tulossa:{' '}
                         <Checkbox
                             checked={this.props.user.isComing}
-                            onChange={this.handleComingChange(this.props.user.id)}
+                            onChange={this.handleUserChange(this.props.user.id, 'isComing')}
                         />
                     </span>
-                    {this.props.user.relatives.length && <h2 id="mina">Perhe:</h2>}
+                    <span style={{ display: 'flex', marginBottom: '2.5em' }}>
+                        Tuon avecin:{' '}
+                        <Checkbox
+                            checked={this.props.user.hasAvec}
+                            onChange={this.handleUserChange(this.props.user.id, 'hasAvec')}
+                        />
+                    </span>
+                    <Input
+                        label={`${
+                            this.props.user.hasAvec
+                                ? 'Minun ja/tai avecini allergiat'
+                                : 'Allergiani'
+                        }`}
+                        onChange={this.handleAllergiesChange}
+                        value={this.state.allergies}
+                    />
+                    {this.props.user.relatives.length && (
+                        <Fragment>
+                            <h2 id="mina">Perhe:</h2>
+                            <span className="smalltext">
+                                (Voit tästä kirjata perheen jäseniäsi tulossa oleviksi, mutta jos
+                                heillä on allergioita/avec yms. pitää heidän [/sinun heidän
+                                nimellään] kirjautua sisälle ja merkitä se itse)
+                            </span>
+                        </Fragment>
+                    )}
+
                     {this.props.user.relatives.map(relative => (
                         <span key={relative.id} style={{ display: 'flex' }}>
                             {`${relative.name}: `}
                             <Checkbox
                                 checked={relative.isComing}
-                                onChange={this.handleComingChange(relative.id)}
+                                onChange={this.handleUserChange(relative.id, 'isComing')}
                             />
                         </span>
                     ))}
@@ -105,7 +154,7 @@ class Ilmottaudu extends Component {
 
 const mapStateToProps = state => ({
     user: state.userReducer,
-    following: state.followingReducer
+    following: state.followingReducer.user
 })
 
 export default connect(mapStateToProps)(Ilmottaudu)

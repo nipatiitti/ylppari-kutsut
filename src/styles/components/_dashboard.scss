@@ -44,6 +44,60 @@
     }
 }
 
+.user {
+    h2 {
+        display: flex;
+        align-items: center;
+
+        .delete {
+            margin-left: 2em;
+            display: none;
+        }
+
+        &:hover {
+            .delete {
+                display: inherit;
+            }
+        }
+    }
+
+    .relative {
+        display: flex;
+        align-items: center;
+
+        i {
+            cursor: pointer;
+            color: white;
+            display: none;
+        }
+
+        &:hover {
+            i {
+                display: inherit;
+            }
+        }
+    }
+
+    .relativeContainer {
+        display: flex;
+        flex-direction: column;
+        margin-left: 2em;
+        margin-bottom: 1em;
+
+        > span > i {
+            color: white;
+            display: none;
+            cursor: pointer;
+        }
+
+        &:hover {
+            > span > i {
+                display: inherit;
+            }
+        }
+    }
+}
+
 .react-add-to-calendar {
     margin-left: 1em;
 

@@ -8,6 +8,7 @@
 
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 
 import { login, register } from 'actions'
@@ -95,6 +96,9 @@ class Login extends React.Component {
                                 />
                                 <Button type="submit">Ilmottaudu</Button>
                             </form>
+                            <div className="admin">
+                                <Link to="/admin">Hallinta</Link>
+                            </div>
                         </Fragment>
                     )}
                 </div>

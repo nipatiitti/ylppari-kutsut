@@ -35,7 +35,7 @@ class App extends Component {
                         <ProtectedRoute path="/ilmottaudu" exact component={Ilmottaudu} />
                         <AdminRoute path="/hallinta" exact component={Hallinta} />
 
-                        {/* <Route path="/" exact render={() => <Redirect to="/kirjaudu" />} /> */}
+                        <Route path="/" exact render={() => <Redirect to="/kirjaudu" />} />
 
                         <Route
                             component={() => (

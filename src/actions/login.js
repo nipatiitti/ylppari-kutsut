@@ -59,7 +59,7 @@ export const login = login => (dispatch, getState) =>
     })
 
 export const followUserUpdates = id => dispatch => {
-    dispatch({ type: SET_FOLLOWING, following: true })
+    dispatch({ type: SET_FOLLOWING, user: true })
 
     firebaseDB.ref(`/users`).on('value', snapshot => {
         const users = snapshot.val()
