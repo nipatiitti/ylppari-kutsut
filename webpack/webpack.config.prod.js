@@ -7,6 +7,7 @@
 
 const path = require('path')
 const webpack = require('webpack')
+const CopyPlugin = require('copy-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -90,7 +91,7 @@ module.exports = require('./webpack.config.base')({
             },
             inject: true
         }),
-
+        new CopyPlugin([{ from: 'public/_redirect', to: './' }, ,]),
         new MiniCssExtractPlugin({
             filename: '[name].[hash].css',
             chunkFilename: '[id].[hash].css'
