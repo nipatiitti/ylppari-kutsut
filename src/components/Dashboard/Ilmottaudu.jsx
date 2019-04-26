@@ -69,9 +69,7 @@ class Ilmottaudu extends Component {
 
     render = () => (
         <Fragment>
-            <Helmet>
-                <title>Ilmottaudu</title>
-            </Helmet>
+            <Helmet title="Ilmottaudu" />
             <div className="ilmottaudu-container">
                 <div className="ilmottaudu-innerContainer">
                     <h2 id="mita">Mitä?</h2>
@@ -93,14 +91,14 @@ class Ilmottaudu extends Component {
                     </span>
                     <div className="break" />
                     <h2 id="mina">Minä:</h2>
-                    <span style={{ display: 'flex' }}>
+                    <span style={{ display: 'flex', padding: '.6em 0' }}>
                         Olen tulossa:{' '}
                         <Checkbox
                             checked={this.props.user.isComing}
                             onChange={this.handleUserChange(this.props.user.id, 'isComing')}
                         />
                     </span>
-                    <span style={{ display: 'flex', marginBottom: '2.5em' }}>
+                    <span style={{ display: 'flex', marginBottom: '2.5em', padding: '.6em 0' }}>
                         Tuon avecin:{' '}
                         <Checkbox
                             checked={this.props.user.hasAvec}

@@ -204,9 +204,7 @@ class Hallinta extends Component {
 
     render = () => (
         <Fragment>
-            <Helmet>
-                <title>Hallinta</title>
-            </Helmet>
+            <Helmet title="Hallinta" />
             <Dialog
                 handleClose={this.handleAddUserClose}
                 open={this.state.addUser}
