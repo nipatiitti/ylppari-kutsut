@@ -13,3 +13,5 @@ yarn-error.log
 
 # vscode settings
 /.vscode
+
+/src/config.js

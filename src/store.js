@@ -1,9 +1,9 @@
 /**
  * Configure redux store
  *
- * @author name <name@vertics.co>
+ * @author name <Niilo.jaakkola@icloud.com>
  *
- * @copyright Vertics Co 2019
+ *
  */
 
 import { createStore, applyMiddleware, compose } from 'redux'
@@ -20,24 +20,21 @@ import { PERSIST_KEY } from 'constants'
 // Create client alias
 // Used in action creators
 const client = axios.create({
-	baseURL: process.env.TEST_API || 'http://localhost:4000',
-	responseType: 'json'
+    baseURL: process.env.TEST_API || 'http://localhost:4000',
+    responseType: 'json'
 })
 
 // Config redux-persist
 const persistConfig = {
-	key: PERSIST_KEY,
-	storage,
-	blacklist: ['form', 'router', 'errorReducer', 'loginReducer']
+    key: PERSIST_KEY,
+    storage,
+    blacklist: ['followingReducer', 'router']
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 // Define middleware to use
-const tools = [
-	applyMiddleware(thunk, routerMiddleware(history), axiosMiddleware(client))
-]
-if (window.__REDUX_DEVTOOLS_EXTENSION__)
-	tools.push(window.__REDUX_DEVTOOLS_EXTENSION__())
+const tools = [applyMiddleware(thunk, routerMiddleware(history), axiosMiddleware(client))]
+if (window.__REDUX_DEVTOOLS_EXTENSION__) tools.push(window.__REDUX_DEVTOOLS_EXTENSION__())
 
 // Create redux store
 const store = createStore(persistedReducer, compose(...tools))

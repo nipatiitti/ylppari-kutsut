@@ -1,5 +1,4 @@
-import Home from './Home'
-import Analytics from './Analytics'
-import Profile from './Profile'
+import Ilmottaudu from './Ilmottaudu'
+import Hallinta from './Hallinta'
 
-export { Home, Analytics, Profile }
+export { Ilmottaudu, Hallinta }

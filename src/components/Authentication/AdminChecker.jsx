@@ -10,7 +10,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-class AuthCheck extends Component {
+import { getUser } from 'reducers'
+
+class AdminCheck extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -19,17 +21,23 @@ class AuthCheck extends Component {
     }
 
     componentDidMount() {
-        if (!this.props.user.loggedIn) {
+        if (!this.props.user) {
             this.setState({ isAuthenticated: false })
         }
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.user.loggedIn && prevProps.user.loggedIn != this.props.user.loggedIn) {
+        if (
+            this.props.user.loggedIn &&
+            this.props.user.isAdmin &&
+            (prevProps.user.loggedIn != this.props.user.loggedIn ||
+                prevProps.user.isAdmin != this.props.user.isAdmin)
+        ) {
             this.setState({ isAuthenticated: true })
         } else if (
-            !this.props.user.loggedIn &&
-            prevProps.user.loggedIn != this.props.user.loggedIn
+            (!this.props.user.loggedIn || !this.props.user.isAdmin) &&
+            (prevProps.user.loggedIn != this.props.user.loggedIn ||
+                prevProps.user.isAdmin != this.props.user.isAdmin)
         ) {
             this.setState({ isAuthenticated: false })
         }
@@ -45,4 +53,4 @@ const mapStateToProps = state => ({
     user: state.userReducer
 })
 
-export default connect(mapStateToProps)(AuthCheck)
+export default connect(mapStateToProps)(AdminCheck)

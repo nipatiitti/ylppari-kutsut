@@ -1,49 +1,27 @@
 /**
  * Root reducer
  *
- * @author name <name@vertics.co>
+ * @author name <Niilo.jaakkola@icloud.com>
  *
- * @copyright Vertics Co 2019
+ *
  */
 
 import { combineReducers } from 'redux'
-import { reducer as reduxFormReducer } from 'redux-form'
 import { connectRouter } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 
 const history = createBrowserHistory()
 
-// Error handling reducer
-import { errorReducer } from './errorReducer'
-
-// login reducer
-import { loginReducer, getUser, getBearer, getLoading } from './login'
-
-// popup reducer
-import { popups } from './popups'
+// Reducers
+import { userReducer } from './userReducer'
+import { followingReducer } from './followingReducer'
 
 // export root reducer
 export const rootReducer = combineReducers({
-    form: reduxFormReducer,
     router: connectRouter(history),
-    errorReducer,
-    popups,
-    loginReducer,
-    reducer360
+    userReducer,
+    followingReducer
 })
 
 // export history
 export { history }
-
-// export getters/ selectors
-// these will be used in individual react component
-export {
-    // login selectors
-    getUser,
-    getBearer,
-    getLoading,
-    // 360 Selectors
-    getDialogs,
-    getRooms,
-    getTour
-}

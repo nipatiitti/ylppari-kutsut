@@ -1,28 +1,87 @@
 /**
  * Login action creator
  *
- * @author name <name@vertics.co>
+ * @author name <Niilo.jaakkola@icloud.com>
  *
- * @copyright Vertics Co 2019
+ *
  */
 
-import { LOGIN } from './types'
+import { firebase, firebaseDB } from '../firebase'
 
-/**
- * Dispatched when user submits login form
- *
- * @param  {object} repos The user object
- *
- * @return {object} The created login action
- */
+import { SET_USER, SET_FOLLOWING, LOGOUT } from './types'
 
-export const login = user => ({
-    type: LOGIN,
-    payload: {
-        request: {
-            method: 'POST',
-            url: '/bearers',
-            data: user
-        }
-    }
+export const logout = () => ({
+    type: LOGOUT
 })
+
+export const login = login => (dispatch, getState) =>
+    new Promise((res, rej) => {
+        firebaseDB
+            .ref('/users/')
+            .once('value')
+            .then(snapshot => {
+                const users = snapshot.val()
+                for (const id in users) {
+                    if (users.hasOwnProperty(id)) {
+                        const user = users[id]
+                        if (
+                            user.name.toLowerCase() ===
+                            `${login.firstName} ${login.lastName}`.toLowerCase()
+                        ) {
+                            let relatives = false
+                            if (user.relatives) {
+                                relatives = []
+                                for (const relative in user.relatives) {
+                                    if (user.relatives.hasOwnProperty(relative)) {
+                                        relatives.push({
+                                            ...users[relative],
+                                            id: relative
+                                        })
+                                    }
+                                }
+                            }
+                            dispatch(followUserUpdates(id))
+                            dispatch({
+                                type: SET_USER,
+                                name: user.name,
+                                isAdmin: user.isAdmin,
+                                isComing: user.isComing,
+                                relatives: relatives ? relatives : [],
+                                id
+                            })
+                            res()
+                        }
+                    }
+                }
+                rej()
+            })
+            .catch(e => rej(e))
+    })
+
+export const followUserUpdates = id => dispatch => {
+    dispatch({ type: SET_FOLLOWING, following: true })
+
+    firebaseDB.ref(`/users`).on('value', snapshot => {
+        const users = snapshot.val()
+        const user = users[id]
+
+        let relatives = false
+        if (user.relatives) {
+            relatives = []
+            for (const relative in user.relatives) {
+                if (user.relatives.hasOwnProperty(relative)) {
+                    relatives.push({
+                        ...users[relative],
+                        id: relative
+                    })
+                }
+            }
+        }
+
+        dispatch({
+            type: SET_USER,
+            ...user,
+            relatives: relatives ? relatives : []
+        })
+    })
+}

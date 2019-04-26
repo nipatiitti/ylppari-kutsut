@@ -1,0 +1,63 @@
+.ilmottaudu {
+    &-container {
+        flex: 1;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        background-color: black;
+
+        overflow-y: auto;
+
+        #mita {
+            margin-top: 1.5em;
+        }
+
+        .h2 {
+            margin-top: 0.5em !important;
+        }
+
+        #mina {
+            margin-top: 1em;
+        }
+
+        span {
+            margin-bottom: 0.5em;
+            font-style: normal !important;
+        }
+    }
+
+    &-innerContainer {
+        flex: 1;
+        padding-left: 1em;
+
+        width: calc(100% - 1em);
+        max-width: 40em;
+        padding-bottom: 2em;
+
+        background: black;
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+.react-add-to-calendar {
+    margin-left: 1em;
+
+    &__button {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    &__dropdown {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin-top: 0.5em;
+        position: absolute;
+        height: 5em;
+    }
+}

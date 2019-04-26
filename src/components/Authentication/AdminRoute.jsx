@@ -5,25 +5,24 @@
  *
  * @author name <Niilo.jaakkola@icloud.com>
  *
- *
  */
 
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import AuthChecker from './AuthChecker'
+import AdminChecker from './AdminChecker'
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
     return (
-        <AuthChecker>
+        <AdminChecker>
             {({ isAuthenticated }) => (
                 <Route
                     {...rest}
                     render={props =>
-                        isAuthenticated ? <Component {...props} /> : <Redirect to="/kirjaudu" />
+                        isAuthenticated ? <Component {...props} /> : <Redirect to="/admin" />
                     }
                 />
             )}
-        </AuthChecker>
+        </AdminChecker>
     )
 }
 

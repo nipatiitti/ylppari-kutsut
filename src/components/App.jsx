@@ -1,52 +1,41 @@
 /**
  * Main container
  *
- * @author name <name@vertics.co>
+ * @author name <Niilo.jaakkola@icloud.com>
  *
- * @copyright Vertics Co 2019
+ *
  */
 
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 
 // components
-import ProtectedRoute from './Authentication/ProtectedRoute'
+import { ProtectedRoute, AdminRoute } from './Authentication'
 
-import Nav from './Header/Nav'
-import { Home } from './Dashboard'
+import { Ilmottaudu, Hallinta } from './Dashboard'
 import Login from './Login'
-
-import ErrorMessage from './UI/ErrorMessage'
+import AdminLogin from './AdminLogin'
 
 class App extends Component {
-
     render = () => {
         return (
             <Fragment>
                 <Helmet
-                    titleTemplate="%s | Insite Finland"
-                    title="Dashboard"
-                    defaultTitle="Insite"
-                >
-                    <meta
-                        name="description"
-                        content="Insite Finland. Leading the future of 360 images in web"
-                    />
-                </Helmet>
+                    titleTemplate="%s | Niilon Ylpparit"
+                    title="Kirjaudu"
+                    defaultTitle="Niilon Ylpparit"
+                />
                 <Router>
                     <Switch>
-                        <Route path="/login" component={Login} />
-                        <ProtectedRoute
-                            path="/"
-                            component={props => (
-                                <Fragment>
-                                    <Nav {...props} />
-                                    <Route path="/" exact component={Home} />
-                                </Fragment>
-                            )}
-                        />
+                        <Route path="/kirjaudu" exact component={Login} />
+                        <Route path="/admin" exact component={AdminLogin} />
+
+                        <ProtectedRoute path="/ilmottaudu" exact component={Ilmottaudu} />
+                        <AdminRoute path="/hallinta" exact component={Hallinta} />
+
+                        {/* <Route path="/" exact render={() => <Redirect to="/kirjaudu" />} /> */}
 
                         <Route
                             component={() => (
@@ -57,11 +46,6 @@ class App extends Component {
                         />
                     </Switch>
                 </Router>
-                {/*
-					Render error message right away
-					Will return null if there is no such error
-				*/}
-                <ErrorMessage />
             </Fragment>
         )
     }
