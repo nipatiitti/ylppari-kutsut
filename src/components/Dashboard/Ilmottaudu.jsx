@@ -118,15 +118,15 @@ class Ilmottaudu extends Component {
                         <Fragment>
                             <h2 id="mina">Perhe:</h2>
                             <span className="smalltext">
-                                (Voit tästä kirjata perheen jäseniäsi tulossa oleviksi, mutta jos
+                                Voit tästä kirjata perheen jäseniäsi tulossa oleviksi, mutta jos
                                 heillä on allergioita/avec yms. pitää heidän (tai sinun heidän
-                                nimellään) kirjautua sisälle ja merkitä se itse)
+                                nimellään) kirjautua sisälle ja merkitä se itse
                             </span>
                         </Fragment>
                     )}
 
                     {this.props.user.relatives.map(relative => (
-                        <span key={relative.id} style={{ display: 'flex' }}>
+                        <span key={relative.id} style={{ display: 'flex', padding: '.6em 0' }}>
                             {`${relative.name}: `}
                             <Checkbox
                                 checked={relative.isComing}
