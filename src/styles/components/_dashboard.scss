@@ -29,8 +29,7 @@
     }
 
     &-innerContainer {
-        flex: 1;
-        padding-left: 1em;
+        flex-shrink: 0;
 
         width: calc(100% - 1em);
         max-width: 40em;
@@ -48,16 +47,17 @@
     h2 {
         display: flex;
         align-items: center;
+    }
 
+    .delete {
+        margin-left: 2em;
+        display: none;
+    }
+
+    &:hover {
         .delete {
-            margin-left: 2em;
-            display: none;
-        }
-
-        &:hover {
-            .delete {
-                display: inherit;
-            }
+            cursor: pointer;
+            display: inherit;
         }
     }
 

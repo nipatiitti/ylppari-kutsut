@@ -43,7 +43,7 @@ module.exports = require('./webpack.config.base')({
             publicPath: false
         },
         // server default port
-        port: 3001,
+        port: 3000,
         historyApiFallback: true
     },
     plugins: [

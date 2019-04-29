@@ -44,6 +44,7 @@ module.exports = options => ({
                 use: [
                     options.mode === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
                     'css-loader',
+                    'postcss-loader',
                     'sass-loader'
                 ]
             },

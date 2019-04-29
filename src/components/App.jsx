@@ -17,6 +17,7 @@ import { ProtectedRoute, AdminRoute } from './Authentication'
 import { Ilmottaudu, Hallinta } from './Dashboard'
 import Login from './Login'
 import AdminLogin from './AdminLogin'
+import Message from './Message'
 
 class App extends Component {
     render = () => {
@@ -46,6 +47,7 @@ class App extends Component {
                         />
                     </Switch>
                 </Router>
+                <Message />
             </Fragment>
         )
     }

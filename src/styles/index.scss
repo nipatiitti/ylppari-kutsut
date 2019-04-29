@@ -89,6 +89,18 @@ body,
     flex-direction: column;
 }
 
+@media screen and (max-width: 400px) {
+    #app {
+        font-size: 70%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #app {
+        font-size: 90%;
+    }
+}
+
 textarea,
 input.text,
 input[type='text'],

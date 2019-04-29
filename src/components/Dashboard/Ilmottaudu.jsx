@@ -10,7 +10,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet'
 
-import { changeUser, followUserUpdates, logout } from 'actions'
+import { changeUser, followUserUpdates, logout, message } from 'actions'
 
 import AddToCalendar from '../AddToCalendar'
 
@@ -142,7 +142,17 @@ class Ilmottaudu extends Component {
                             margin: '3em 0'
                         }}
                     >
-                        <Button onClick={() => this.props.dispatch(logout())}>Kirjaudu Ulos</Button>
+                        <Button onClick={() => this.props.dispatch(message())}>Tallenna</Button>
+                    </div>
+                    <div
+                        style={{
+                            flex: 1,
+                            display: 'flex',
+                            justifyContent: 'center',
+                            margin: '0 0 3em 0'
+                        }}
+                    >
+                        <Button onClick={() => this.props.dispatch(logout())}>Kirjaudu ulos</Button>
                     </div>
                 </div>
             </div>

@@ -31,6 +31,7 @@ class Hallinta extends Component {
 
         this.state = {
             open: [],
+            search: '',
 
             // Add User dialog
             addUser: false,
@@ -108,9 +109,22 @@ class Hallinta extends Component {
         const open = this.state.open.find(key => key == user.id)
         return (
             <div className="user" key={user.id}>
-                <h2 style={{ cursor: 'pointer' }} onClick={() => this.handleOpen(user.id, !open)}>
-                    {user.name}{' '}
-                    <i className="material-icons">{open ? 'arrow_drop_up' : 'arrow_drop_down'}</i>{' '}
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center'
+                    }}
+                >
+                    <h2
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => this.handleOpen(user.id, !open)}
+                    >
+                        {user.name}{' '}
+                        <i className="material-icons">
+                            {open ? 'arrow_drop_up' : 'arrow_drop_down'}
+                        </i>{' '}
+                    </h2>
                     <i
                         onClick={() => this.props.dispatch(deleteUser(user.id))}
                         className="material-icons delete"
@@ -118,7 +132,7 @@ class Hallinta extends Component {
                     >
                         delete
                     </i>
-                </h2>
+                </div>
                 {open && (
                     <div className="relativeContainer">
                         <span>ID:{'  ' + user.id}</span>
@@ -186,7 +200,14 @@ class Hallinta extends Component {
         const comingUsers = users.filter(user => user.isComing).length
 
         return (
-            <Fragment>
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    flexShrink: 0
+                }}
+            >
                 <h2>Stastiikat:</h2>
                 <span>{`Kutsuttu: ${allUsers}`}</span>
                 <span>{`Tulossa/Kutsuttu: ${comingUsers}/${allUsers}, ${Math.round(
@@ -198,7 +219,7 @@ class Hallinta extends Component {
                 {allergies.map((allergie, i) => (
                     <span key={i}>{allergie}</span>
                 ))}
-            </Fragment>
+            </div>
         )
     }
 
@@ -243,14 +264,27 @@ class Hallinta extends Component {
                 </form>
             </Dialog>
             <div className="ilmottaudu-container">
+                <div style={{ padding: '2em 0 0 0', flexShrink: 0 }}>
+                    <Input
+                        label="Search"
+                        value={this.state.search}
+                        onChange={this.handleChange('search')}
+                    />
+                </div>
                 <div className="ilmottaudu-innerContainer">
-                    {this.props.users && this.props.users.map(user => this.renderUser(user))}
+                    {this.props.users &&
+                        this.props.users
+                            .filter(user =>
+                                user.name.toLowerCase().includes(this.state.search.toLowerCase())
+                            )
+                            .map(user => this.renderUser(user))}
                 </div>
                 <div
                     style={{
                         display: 'flex',
                         justifyContent: 'center',
-                        margin: '2em 0'
+                        margin: '2em 0',
+                        flexShrink: 0
                     }}
                 >
                     <Button
@@ -264,7 +298,8 @@ class Hallinta extends Component {
                     style={{
                         display: 'flex',
                         justifyContent: 'center',
-                        margin: '2em 0'
+                        margin: '2em 0',
+                        flexShrink: 0
                     }}
                 >
                     <Button onClick={() => this.props.dispatch(logout())}>Kirjaudu Ulos</Button>

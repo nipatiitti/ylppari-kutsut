@@ -16,13 +16,15 @@ const history = createBrowserHistory()
 import { userReducer } from './userReducer'
 import { followingReducer } from './followingReducer'
 import { adminReducer } from './adminReducer'
+import { messageReducer } from './messageReducer'
 
 // export root reducer
 export const rootReducer = combineReducers({
     router: connectRouter(history),
     userReducer,
     followingReducer,
-    adminReducer
+    adminReducer,
+    messageReducer
 })
 
 // export history

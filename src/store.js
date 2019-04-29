@@ -28,7 +28,7 @@ const client = axios.create({
 const persistConfig = {
     key: PERSIST_KEY,
     storage,
-    blacklist: ['followingReducer', 'router']
+    blacklist: ['followingReducer', 'router', 'messageReducer']
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 

@@ -23,6 +23,11 @@
         font-weight: 100;
         font-style: italic;
 
+        // Webkit shits
+
+        border-radius: 0;
+        padding: 0;
+
         &:focus {
             outline: none;
         }

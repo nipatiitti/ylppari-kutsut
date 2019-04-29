@@ -8,7 +8,12 @@
 
 import { firebase, firebaseDB } from '../firebase'
 
-import { SET_USER, SET_FOLLOWING, LOGOUT } from './types'
+import { SET_USER, SET_FOLLOWING, LOGOUT, MESSAGE } from './types'
+
+export const message = () => dispatch => {
+    dispatch({ type: MESSAGE, open: true })
+    window.setTimeout(() => dispatch({ type: MESSAGE, open: false }), 2000)
+}
 
 export const logout = () => ({
     type: LOGOUT

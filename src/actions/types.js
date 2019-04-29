@@ -11,3 +11,4 @@ export const SET_USERS = 'SET_USERS'
 export const SET_FOLLOWING = 'SET_FOLLOWING'
 
 export const LOGOUT = 'LOGOUT'
+export const MESSAGE = 'MESSAGE'
