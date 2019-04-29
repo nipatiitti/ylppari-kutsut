@@ -19,7 +19,7 @@ export const logout = () => ({
     type: LOGOUT
 })
 
-export const login = login => (dispatch, getState) =>
+export const login = login => dispatch =>
     new Promise((res, rej) => {
         firebaseDB
             .ref('/users/')

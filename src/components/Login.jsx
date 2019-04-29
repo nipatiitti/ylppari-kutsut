@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 
-import { login, register } from 'actions'
+import { login } from 'actions'
 
 import { Button, Loading, Input } from './Utils'
 
@@ -90,12 +90,22 @@ class Login extends React.Component {
                         <Fragment>
                             {this.state.failed && (
                                 <div className="login-failed">
-                                    <h3>Näyttää siltä, ettet ole kutsulistalla</h3>
+                                    <h3>Näyttää siltä, että kirjautuminen ei onnistu.</h3>
                                     <span>
-                                        Jos uskot tämän olevan virhe laita viestiä{' '}
+                                        Ota yhteyttä
+                                        <br />
+                                        <br />
                                         <a href="mailto:niilo.jaakkola@icloud.com">
                                             niilo.jaakkola@icloud.com
                                         </a>
+                                        <br />
+                                        tai
+                                        <br />
+                                        Meri Jaakkola, +358 40 545 6953
+                                        <br />
+                                        tai
+                                        <br />
+                                        Jussi Jaakkola, +358 40 505 8545
                                     </span>
                                 </div>
                             )}
