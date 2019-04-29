@@ -70,7 +70,7 @@ class Login extends React.Component {
                 </Helmet>
                 <div className="login-left">
                     <h1>Tervetuloa</h1>
-                    <span>Niilon Ylioppilasjuhlien Kutsuportaali</span>
+                    <span>Niilon Ylioppilasjuhlien Kutsuportaaliin</span>
                     <div className="login-left-arrow" onClick={this.handleScroll}>
                         <i className="material-icons arrows" id="first">
                             keyboard_arrow_up
