@@ -223,6 +223,8 @@ class Hallinta extends Component {
         )
     }
 
+    sort = (a, b) => (a.firstname < b.firstname ? -1 : a.firstname > b.firstname ? 1 : 0)
+
     render = () => (
         <Fragment>
             <Helmet title="Hallinta" />
@@ -277,6 +279,7 @@ class Hallinta extends Component {
                             .filter(user =>
                                 user.name.toLowerCase().includes(this.state.search.toLowerCase())
                             )
+                            .sort(this.sort)
                             .map(user => this.renderUser(user))}
                 </div>
                 <div
