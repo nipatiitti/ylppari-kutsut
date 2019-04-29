@@ -223,7 +223,12 @@ class Hallinta extends Component {
         )
     }
 
-    sort = (a, b) => (a.firstname < b.firstname ? -1 : a.firstname > b.firstname ? 1 : 0)
+    sort = (a, b) =>
+        a.name.split(' ')[1] < b.name.split(' ')[1]
+            ? -1
+            : a.name.split(' ')[1] > b.name.split(' ')[1]
+            ? 1
+            : 0
 
     render = () => (
         <Fragment>
