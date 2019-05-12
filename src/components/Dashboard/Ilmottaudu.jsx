@@ -53,9 +53,9 @@ class Ilmottaudu extends Component {
     }
 
     handleUserChange = (id, field) => e => {
-        if (field == 'isComing' && e.target.value) {
+        if (field == 'isComing' && e) {
             changeUser(id, { notComing: false, isComing: true })
-        } else if (field == 'notComing' && e.target.value) {
+        } else if (field == 'notComing' && e) {
             changeUser(id, { notComing: true, isComing: false })
         } else {
             if (e.target) {
@@ -111,22 +111,32 @@ class Ilmottaudu extends Component {
                             onChange={this.handleUserChange(this.props.user.id, 'notComing')}
                         />
                     </span>
-                    <span style={{ display: 'flex', marginBottom: '2.5em', padding: '.6em 0' }}>
-                        Tuon avecin:{' '}
-                        <Checkbox
-                            checked={this.props.user.hasAvec}
-                            onChange={this.handleUserChange(this.props.user.id, 'hasAvec')}
-                        />
-                    </span>
-                    <Input
-                        label={`${
-                            this.props.user.hasAvec
-                                ? 'Minun ja/tai avecini allergiat'
-                                : 'Allergiani'
-                        }`}
-                        onChange={this.handleAllergiesChange}
-                        value={this.state.allergies}
-                    />
+                    {this.props.user.isComing && (
+                        <Fragment>
+                            <span
+                                style={{
+                                    display: 'flex',
+                                    marginBottom: '2.5em',
+                                    padding: '.6em 0'
+                                }}
+                            >
+                                Tuon avecin:{' '}
+                                <Checkbox
+                                    checked={this.props.user.hasAvec}
+                                    onChange={this.handleUserChange(this.props.user.id, 'hasAvec')}
+                                />
+                            </span>
+                            <Input
+                                label={`${
+                                    this.props.user.hasAvec
+                                        ? 'Minun ja/tai avecini allergiat'
+                                        : 'Allergiani'
+                                }`}
+                                onChange={this.handleAllergiesChange}
+                                value={this.state.allergies}
+                            />
+                        </Fragment>
+                    )}
                     {this.props.user.relatives.length && (
                         <Fragment>
                             <h2 id="mina">Perhe:</h2>
