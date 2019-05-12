@@ -53,10 +53,16 @@ class Ilmottaudu extends Component {
     }
 
     handleUserChange = (id, field) => e => {
-        if (e.target) {
-            changeUser(id, { [field]: e.target.value })
+        if (field == 'isComing' && e.target.value) {
+            changeUser(id, { notComing: false, isComing: true })
+        } else if (field == 'notComing' && e.target.value) {
+            changeUser(id, { notComing: true, isComing: false })
         } else {
-            changeUser(id, { [field]: e })
+            if (e.target) {
+                changeUser(id, { [field]: e.target.value })
+            } else {
+                changeUser(id, { [field]: e })
+            }
         }
     }
 
@@ -96,6 +102,13 @@ class Ilmottaudu extends Component {
                         <Checkbox
                             checked={this.props.user.isComing}
                             onChange={this.handleUserChange(this.props.user.id, 'isComing')}
+                        />
+                    </span>
+                    <span style={{ display: 'flex', padding: '.6em 0' }}>
+                        En pääse tulemaan:{' '}
+                        <Checkbox
+                            checked={this.props.user.notComing}
+                            onChange={this.handleUserChange(this.props.user.id, 'notComing')}
                         />
                     </span>
                     <span style={{ display: 'flex', marginBottom: '2.5em', padding: '.6em 0' }}>

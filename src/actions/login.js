@@ -51,6 +51,7 @@ export const login = login => dispatch =>
                                 name: user.name,
                                 isAdmin: user.isAdmin,
                                 isComing: user.isComing,
+                                notComing: user.notComing,
                                 relatives: relatives ? relatives : [],
                                 id
                             })

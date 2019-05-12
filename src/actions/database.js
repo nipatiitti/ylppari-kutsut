@@ -13,6 +13,7 @@ export const deleteRelative = (userId, relativeId) =>
 export const addUser = (name, isAdmin = false) =>
     firebaseDB.ref(`/users/${id()}`).set({
         isComing: false,
+        notComing: false,
         hasAvec: false,
         name,
         isAdmin,

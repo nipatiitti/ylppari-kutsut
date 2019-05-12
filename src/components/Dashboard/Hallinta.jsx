@@ -137,8 +137,9 @@ class Hallinta extends Component {
                     <div className="relativeContainer">
                         <span>ID:{'  ' + user.id}</span>
                         <span>Avec:{user.hasAvec ? '  Kyllä' : '  Ei'}</span>
-                        <span>Coming:{user.isComing ? '  Kyllä' : '  Ei'}</span>
-                        <span>Allergies:{'  ' + user.allergies}</span>
+                        <span>Tulossa:{user.isComing ? '  Kyllä' : '  Ei'}</span>
+                        <span>Ei tulossa:{user.notComing ? '  Kyllä' : '  Ei'}</span>
+                        <span>Allergiat:{'  ' + user.allergies}</span>
                         <span
                             style={{
                                 display: 'flex',

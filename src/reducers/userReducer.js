@@ -5,6 +5,7 @@ const initialState = {
     id: '',
     isAdmin: false,
     isComing: false,
+    notComing: false,
     hasAvec: false,
     allergies: '',
     relatives: [],

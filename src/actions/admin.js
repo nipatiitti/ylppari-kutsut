@@ -27,6 +27,7 @@ export const adminLogin = login => (dispatch, getState) =>
                                             name: user.name,
                                             isAdmin: user.isAdmin,
                                             isComing: user.isComing,
+                                            notComing: user.notComing,
                                             id
                                         })
                                         return res()
