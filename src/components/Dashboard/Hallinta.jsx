@@ -199,6 +199,7 @@ class Hallinta extends Component {
         }
 
         const comingUsers = users.filter(user => user.isComing).length
+        const notComing = users.filter(user => user.notComing).length
 
         return (
             <div
@@ -216,6 +217,7 @@ class Hallinta extends Component {
                 )}%`}</span>
                 <span>{`Avecs: ${avecs}`}</span>
                 <span>{`Yhteensä tulossa: ${comingUsers + avecs}`}</span>
+                <span>{`Ei tulossa (varmasti): ${notComing}`}</span>
                 <h2>Allergiat:</h2>
                 {allergies.map((allergie, i) => (
                     <span key={i}>{allergie}</span>
