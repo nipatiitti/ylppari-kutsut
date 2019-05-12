@@ -120,7 +120,7 @@ class Login extends React.Component {
                                     value={this.state.lastName}
                                     onChange={this.handleChange('lastName')}
                                 />
-                                <Button type="submit">Ilmottaudu</Button>
+                                <Button type="submit">Avaa Kutsu</Button>
                             </form>
                             <div className="admin">
                                 <Link to="/admin">Hallinta</Link>

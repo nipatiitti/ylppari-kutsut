@@ -20,7 +20,7 @@ const calendarConfig = {
     event: {
         title: 'Ylioppilasjuhlat, Niilo',
         description: 'Niilo Jaakkolan Ylioppilas juhlat, 2019',
-        location: 'Finland, Naantali, 21110, Kultaranta Golf',
+        location: 'Finland, Naantali, 21110, Kultaranta Golf Vanha Päärakennus',
         startTime: '2019-06-01T14:00:00+03:00',
         endTime: '2019-06-01T19:00:00+03:00'
     },
@@ -82,7 +82,7 @@ class Ilmottaudu extends Component {
                     <span>Niilo Jaakkolan ylioppilas juhlat</span>
                     <h2 className="h2">Missä?</h2>
                     <span>
-                        Kultaranta golf
+                        Naantali, 21110, Kultaranta golf Vanha päärakennus
                         <a
                             style={{ marginLeft: '1em' }}
                             href="https://www.google.com/maps/place/Unnamed+Road,+21100+Naantali/@60.4550447,21.9520316,17z/data=!3m1!4b1!4m5!3m4!1s0x468b8f5be3d8d3b9:0x29a64e5c99dc2b56!8m2!3d60.4550396!4d21.9538677"
